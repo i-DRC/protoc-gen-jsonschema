@@ -91,14 +91,11 @@ func (c *Converter) convertEnumType(enum *descriptor.EnumDescriptorProto) (jsons
 		jsonSchemaType.Description = formatDescription(src)
 	}
 
-	// Allow both strings and integers:
-	jsonSchemaType.OneOf = append(jsonSchemaType.OneOf, &jsonschema.Type{Type: "string"})
-	jsonSchemaType.OneOf = append(jsonSchemaType.OneOf, &jsonschema.Type{Type: "integer"})
+	jsonSchemaType.Type = &jsonschema.Type{Type: "string"}
 
 	// Add the allowed values:
 	for _, enumValue := range enum.Value {
 		jsonSchemaType.Enum = append(jsonSchemaType.Enum, enumValue.Name)
-		jsonSchemaType.Enum = append(jsonSchemaType.Enum, enumValue.Number)
 	}
 
 	return jsonSchemaType, nil
