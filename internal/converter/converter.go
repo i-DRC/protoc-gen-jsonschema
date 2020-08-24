@@ -91,7 +91,7 @@ func (c *Converter) convertEnumType(enum *descriptor.EnumDescriptorProto) (jsons
 		jsonSchemaType.Description = formatDescription(src)
 	}
 
-	jsonSchemaType.Type = &jsonschema.Type{Type: "string"}
+	jsonSchemaType.Type = "string"
 
 	// Add the allowed values:
 	for _, enumValue := range enum.Value {
